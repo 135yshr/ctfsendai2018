@@ -46,6 +46,10 @@ func TestCreateInstance(t *testing.T) {
 			args: args{name: "foo bar", email: "hoge@hoge.com"},
 			want: &User{Name: "foo bar", EMail: "hoge@hoge.com"},
 		},
+		"メールアドレスにfoo@foo.co.jpを指定してEmailからfoo@foo.co.jpを取得できること": {
+			args: args{name: "foo bar", email: "foo@foo.co.jp"},
+			want: &User{Name: "foo bar", EMail: "foo@foo.co.jp"},
+		},
 	}
 	for testName, arg := range tests {
 		t.Run(testName, func(t *testing.T) {
