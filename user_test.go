@@ -6,7 +6,7 @@ import (
 	"testing"
 )
 
-func TestCreateInstance(t *testing.T) {
+func TestNewUser(t *testing.T) {
 	type args struct {
 		name  string
 		age   uint8
