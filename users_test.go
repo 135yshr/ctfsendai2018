@@ -1,6 +1,10 @@
 package ctfsendai2018
 
-import "testing"
+import (
+	"errors"
+	"reflect"
+	"testing"
+)
 
 func TestCreateInstance(t *testing.T) {
 	type args struct {
@@ -17,12 +21,17 @@ func TestCreateInstance(t *testing.T) {
 			},
 			want: &User{},
 		},
-		"氏名が空のときにインスタンスがnilになり、エラーが返ってくること": {},
+		"氏名が空のときにインスタンスがnilになり、エラーが返ってくること": {
+			err: errors.New("name can not be empty"),
+		},
 	}
 	for testName, arg := range tests {
 		t.Run(testName, func(t *testing.T) {
-			sut := NewUser(arg.args.name)
-			if sut != arg.want {
+			sut, err := NewUser(arg.args.name)
+			if reflect.DeepEqual(err, arg.err) == false {
+				t.Errorf("Error actual: %v, expected: %v", err, arg.err)
+			}
+			if reflect.DeepEqual(sut, arg.want) == false {
 				t.Errorf("Not equals actual: %v, expected: %v", sut, arg.want)
 				return
 			}

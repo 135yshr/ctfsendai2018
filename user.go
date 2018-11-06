@@ -2,6 +2,10 @@
 // There are three vulnerabilities in this system, and we exploit the vulnerability from the outside to obtain a hidden flag.
 package ctfsendai2018
 
+import (
+	"fmt"
+)
+
 // Specification of user information
 // User information has information of name, age, e-mail address, remarks.
 // The name must be between 1 and 20 characters in a string.
@@ -14,9 +18,9 @@ type User struct {
 }
 
 // NewUser は、新しくユーザー情報のインスタンスを作成する
-func NewUser(name string) *User {
+func NewUser(name string) (*User, error) {
 	if name == "" {
-		return nil
+		return nil, fmt.Errorf("name can not be empty")
 	}
-	return &User{}
+	return &User{}, nil
 }
