@@ -6,7 +6,7 @@ Todo:
         ✔ 氏名にhoge fugaを指定してNameからhoge fugaが取得できること @done(18-11-07 01:18)
         ✔ 氏名にfoo barを指定してNameからfoo barが取得できること @done(18-11-07 03:24)
         ✔ 年齢に18を指定してAgeから18が取得できること @done(18-11-07 03:29)
-        [] 年齢に20を指定してAgeから20が取得できること
+        ✔ 年齢に20を指定してAgeから20が取得できること @done(18-11-07 03:31)
         [] メールアドレスにhoge@hoge.comを指定してEmailからhoge@hoge.comを取得できること
         [] メールアドレスにfoo@foo.co.jpを指定してEmailからfoo@foo.co.jpを取得できること
         [] メールアドレスにxxxxxxを指定してエラーが取得できること

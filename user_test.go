@@ -37,6 +37,10 @@ func TestCreateInstance(t *testing.T) {
 			args: args{name: "foo bar", age: 18},
 			want: &User{Name: "foo bar", Age: 18},
 		},
+		"年齢に20を指定してAgeから20が取得できること": {
+			args: args{name: "foo bar", age: 20},
+			want: &User{Name: "foo bar", Age: 20},
+		},
 	}
 	for testName, arg := range tests {
 		t.Run(testName, func(t *testing.T) {
