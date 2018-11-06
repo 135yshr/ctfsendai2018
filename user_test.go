@@ -9,6 +9,7 @@ import (
 func TestCreateInstance(t *testing.T) {
 	type args struct {
 		name string
+		age  uint8
 	}
 	tests := map[string]struct {
 		args args
@@ -24,38 +25,22 @@ func TestCreateInstance(t *testing.T) {
 		"氏名が空のときにインスタンスがnilになり、エラーが返ってくること": {
 			err: errors.New("name can not be empty"),
 		},
-	}
-	for testName, arg := range tests {
-		t.Run(testName, func(t *testing.T) {
-			sut, err := NewUser(arg.args.name)
-			if reflect.DeepEqual(err, arg.err) == false {
-				t.Errorf("Error actual: %v, expected: %v", err, arg.err)
-			}
-			if reflect.DeepEqual(sut, arg.want) == false {
-				t.Errorf("Not equals actual: %v, expected: %v", sut, arg.want)
-				return
-			}
-		})
-	}
-}
-
-func TestNewUser_Name(t *testing.T) {
-	type args struct {
-		name string
-	}
-	tests := map[string]struct {
-		args args
-		want *User
-		err  error
-	}{
 		"氏名にhoge fugaを指定してNameからhoge fugaが取得できること": {
 			args: args{name: "hoge fuga"},
 			want: &User{Name: "hoge fuga"},
 		},
+		"氏名にfoo barを指定してNameからfoo barが取得できること": {
+			args: args{name: "foo bar"},
+			want: &User{Name: "foo bar"},
+		},
+		"年齢に18を指定してAgeから18が取得できること": {
+			args: args{name: "foo bar", age: 18},
+			want: &User{Name: "foo bar", Age: 18},
+		},
 	}
 	for testName, arg := range tests {
 		t.Run(testName, func(t *testing.T) {
-			sut, err := NewUser("hoge fuga")
+			sut, err := NewUser(arg.args.name, arg.args.age)
 			if reflect.DeepEqual(err, arg.err) == false {
 				t.Errorf("Error actual: %v, expected: %v", err, arg.err)
 			}

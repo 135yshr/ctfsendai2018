@@ -16,12 +16,13 @@ import (
 // User は、ユーザー情報を表す構造体
 type User struct {
 	Name string
+	Age  uint8
 }
 
 // NewUser は、新しくユーザー情報のインスタンスを作成する
-func NewUser(name string) (*User, error) {
+func NewUser(name string, age uint8) (*User, error) {
 	if name == "" {
 		return nil, fmt.Errorf("name can not be empty")
 	}
-	return &User{Name: name}, nil
+	return &User{Name: name, Age: age}, nil
 }
