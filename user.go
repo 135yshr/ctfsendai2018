@@ -15,6 +15,7 @@ import (
 
 // User は、ユーザー情報を表す構造体
 type User struct {
+	Name string
 }
 
 // NewUser は、新しくユーザー情報のインスタンスを作成する
@@ -22,5 +23,5 @@ func NewUser(name string) (*User, error) {
 	if name == "" {
 		return nil, fmt.Errorf("name can not be empty")
 	}
-	return &User{}, nil
+	return &User{Name: name}, nil
 }
