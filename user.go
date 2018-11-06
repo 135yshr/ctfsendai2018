@@ -8,3 +8,12 @@ package ctfsendai2018
 // The age shall be a numerical value of 0 or more.
 // The mail address is a character string and conforms to the mailbox of RFC 5321 and the addr-spec of RFC 5322.
 // Remarks are limited to 50 characters in a character string.
+
+// User は、ユーザー情報を表す構造体
+type User struct {
+}
+
+// NewUser は、新しくユーザー情報のインスタンスを作成する
+func NewUser(name string) *User {
+	return &User{}
+}
