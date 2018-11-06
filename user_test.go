@@ -55,6 +55,10 @@ func TestCreateInstance(t *testing.T) {
 			args: args{name: "foo bar", note: "xxxxxx"},
 			want: &User{Name: "foo bar", Note: "xxxxxx"},
 		},
+		"備考にyyyyyyを指定してNoteからyyyyyが取得できること": {
+			args: args{name: "foo bar", note: "yyyyyy"},
+			want: &User{Name: "foo bar", Note: "yyyyyy"},
+		},
 	}
 	for testName, arg := range tests {
 		t.Run(testName, func(t *testing.T) {
