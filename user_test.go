@@ -11,6 +11,7 @@ func TestCreateInstance(t *testing.T) {
 		name  string
 		age   uint8
 		email string
+		note  string
 	}
 	tests := map[string]struct {
 		args args
@@ -50,10 +51,14 @@ func TestCreateInstance(t *testing.T) {
 			args: args{name: "foo bar", email: "foo@foo.co.jp"},
 			want: &User{Name: "foo bar", EMail: "foo@foo.co.jp"},
 		},
+		"備考にxxxxxxを指定してNoteからxxxxxが取得できること": {
+			args: args{name: "foo bar", note: "xxxxxx"},
+			want: &User{Name: "foo bar", Note: "xxxxxx"},
+		},
 	}
 	for testName, arg := range tests {
 		t.Run(testName, func(t *testing.T) {
-			sut, err := NewUser(arg.args.name, arg.args.age, arg.args.email)
+			sut, err := NewUser(arg.args.name, arg.args.age, arg.args.email, arg.args.note)
 			if reflect.DeepEqual(err, arg.err) == false {
 				t.Errorf("Error actual: %v, expected: %v", err, arg.err)
 			}

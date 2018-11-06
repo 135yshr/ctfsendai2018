@@ -9,7 +9,7 @@ Todo:
         ✔ 年齢に20を指定してAgeから20が取得できること @done(18-11-07 03:31)
         ✔ メールアドレスにhoge@hoge.comを指定してEmailからhoge@hoge.comを取得できること @started(18-11-07 03:31) @done(18-11-07 03:33) @lasted(2m48s)
         ✔ メールアドレスにfoo@foo.co.jpを指定してEmailからfoo@foo.co.jpを取得できること @started(18-11-07 03:34) @done(18-11-07 03:35) @lasted(1m15s)
-        [] メールアドレスにxxxxxxを指定してエラーが取得できること
-        [] 備考にxxxxxxを指定してNoteからxxxxxが取得できること
+        ✘ メールアドレスにxxxxxxを指定してエラーが取得できること @started(18-11-07 03:35) @cancelled(18-11-07 03:36) @wasted(1m17s)
+        ✔ 備考にxxxxxxを指定してNoteからxxxxxが取得できること @done(18-11-07 03:39)
         [] 備考にyyyyyyを指定してNoteからyyyyyが取得できること
     
