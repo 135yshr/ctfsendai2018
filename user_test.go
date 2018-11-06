@@ -8,8 +8,9 @@ import (
 
 func TestCreateInstance(t *testing.T) {
 	type args struct {
-		name string
-		age  uint8
+		name  string
+		age   uint8
+		email string
 	}
 	tests := map[string]struct {
 		args args
@@ -41,10 +42,14 @@ func TestCreateInstance(t *testing.T) {
 			args: args{name: "foo bar", age: 20},
 			want: &User{Name: "foo bar", Age: 20},
 		},
+		"メールアドレスにhoge@hoge.comを指定してEmailからhoge@hoge.comを取得できること": {
+			args: args{name: "foo bar", email: "hoge@hoge.com"},
+			want: &User{Name: "foo bar", EMail: "hoge@hoge.com"},
+		},
 	}
 	for testName, arg := range tests {
 		t.Run(testName, func(t *testing.T) {
-			sut, err := NewUser(arg.args.name, arg.args.age)
+			sut, err := NewUser(arg.args.name, arg.args.age, arg.args.email)
 			if reflect.DeepEqual(err, arg.err) == false {
 				t.Errorf("Error actual: %v, expected: %v", err, arg.err)
 			}
