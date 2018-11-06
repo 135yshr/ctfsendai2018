@@ -15,5 +15,8 @@ type User struct {
 
 // NewUser は、新しくユーザー情報のインスタンスを作成する
 func NewUser(name string) *User {
+	if name == "" {
+		return nil
+	}
 	return &User{}
 }
