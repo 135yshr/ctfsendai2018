@@ -11,12 +11,15 @@ func NewUserRepository() UserRepository {
 	return &userRepository{}
 }
 
-type userRepository struct{}
+type userRepository struct {
+	list []*User
+}
 
 func (r *userRepository) Add(u *User) error {
+	r.list = append(r.list, u)
 	return nil
 }
 
 func (r *userRepository) List() ([]*User, error) {
-	return []*User{&User{}}, nil
+	return r.list, nil
 }

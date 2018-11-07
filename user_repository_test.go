@@ -42,6 +42,18 @@ func TestAddUser(t *testing.T) {
 				&User{},
 			},
 		},
+		"アカウント登録を２回実行してユーザー情報を２件取得できること": {
+			args: args{
+				users: []*User{
+					&User{Name: "hoge hoge"},
+					&User{Name: "huga huga"},
+				},
+			},
+			want: []*User{
+				&User{Name: "hoge hoge"},
+				&User{Name: "huga huga"},
+			},
+		},
 	}
 	for testName, arg := range tests {
 		t.Run(testName, func(t *testing.T) {
