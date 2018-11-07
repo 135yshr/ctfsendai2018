@@ -12,8 +12,8 @@ Todo:
         ✘ メールアドレスにxxxxxxを指定してエラーが取得できること @started(18-11-07 03:35) @cancelled(18-11-07 03:36) @wasted(1m17s)
         ✔ 備考にxxxxxxを指定してNoteからxxxxxが取得できること @done(18-11-07 03:39)
         ✔ 備考にyyyyyyを指定してNoteからyyyyyが取得できること @started(18-11-07 03:39) @done(18-11-07 03:39) @lasted(54s)
-        [] パスワードにpasswordを指定してPasswordからpasswordが取得できること
-        [] パスワードにpasspassを指定してPasswordからpasspassが取得できること
+        ✔ パスワードにpasswordを指定してPasswordからpasswordが取得できること @done(18-11-07 14:31)
+        ✔ パスワードにpasspassを指定してPasswordからpasspassが取得できること @done(18-11-07 14:32)
         [] 権限にAdmin(1)を指定してAuthorityからAdmin(1)が取得できること
         [] 権限にWorker(2)を指定してAuthorityからWorker(2)が取得できること
     UserRepositories:

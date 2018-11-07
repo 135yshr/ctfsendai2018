@@ -64,6 +64,10 @@ func TestNewUser(t *testing.T) {
 			args: args{name: "foo bar", pass: "password"},
 			want: &User{Name: "foo bar", Password: "password"},
 		},
+		"パスワードにpasspassを指定してPasswordからpasspassが取得できること": {
+			args: args{name: "foo bar", pass: "passpass"},
+			want: &User{Name: "foo bar", Password: "passpass"},
+		},
 	}
 	for testName, arg := range tests {
 		t.Run(testName, func(t *testing.T) {
