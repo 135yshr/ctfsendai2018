@@ -15,7 +15,7 @@ Todo:
         ✔ パスワードにpasswordを指定してPasswordからpasswordが取得できること @done(18-11-07 14:31)
         ✔ パスワードにpasspassを指定してPasswordからpasspassが取得できること @done(18-11-07 14:32)
         ✔ 権限にAdmin(1)を指定してAuthorityからAdmin(1)が取得できること @done(18-11-07 14:35)
-        [] 権限にWorker(2)を指定してAuthorityからWorker(2)が取得できること
+        ✔ 権限にWorker(2)を指定してAuthorityからWorker(2)が取得できること @done(18-11-07 14:36)
     UserRepositories:
         [] アカウント登録を１回実行してユーザー情報を１件取得できること
         [] アカウント登録を２回実行してユーザー情報を２件取得できること

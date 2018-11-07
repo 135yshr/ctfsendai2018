@@ -73,6 +73,10 @@ func TestNewUser(t *testing.T) {
 			args: args{name: "foo bar", auth: 1},
 			want: &User{Name: "foo bar", Auth: 1},
 		},
+		"権限にWorker(2)を指定してAuthorityからWorker(2)が取得できること": {
+			args: args{name: "foo bar", auth: 2},
+			want: &User{Name: "foo bar", Auth: 2},
+		},
 	}
 	for testName, arg := range tests {
 		t.Run(testName, func(t *testing.T) {
