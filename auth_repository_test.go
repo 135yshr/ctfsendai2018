@@ -37,14 +37,27 @@ func TestLogin(t *testing.T) {
 		want *Authentication
 		err  error
 	}{
-		"アカウントを登録した後登録したユーザーでログインできること": {
+		"メールアドレスがhoge@hoge.comのログイン情報を作成できること": {
 			args: args{
 				user: &User{
+					Name:     "hoge hoge",
+					Auth:     2,
 					EMail:    "hoge@hoge.com",
 					Password: "pass",
 				},
 			},
-			want: &Authentication{Token: "eyJuYW1lIjogImhvZ2UgaG9nZSIsImV4cCI6IDE5MjQ5NTIzOTl9"},
+			want: &Authentication{Token: "eyJhbGciOiJub25lIiwidHlwIjoiSldUIn0.eyJhdXRoIjoyLCJleHAiOjE5MjQ5NTIzOTksInVzZXIiOiJob2dlIGhvZ2UifQ."},
+		},
+		"メールアドレスがfuga@fuga.comのユーザー情報でログイン情報を作成できること": {
+			args: args{
+				user: &User{
+					Name:     "fuga fuga",
+					Auth:     2,
+					EMail:    "fuga@fuga.com",
+					Password: "pass",
+				},
+			},
+			want: &Authentication{Token: "eyJhbGciOiJub25lIiwidHlwIjoiSldUIn0.eyJhdXRoIjoyLCJleHAiOjE5MjQ5NTIzOTksInVzZXIiOiJmdWdhIGZ1Z2EifQ."},
 		},
 	}
 	for testName, arg := range tests {

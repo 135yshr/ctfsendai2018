@@ -1,5 +1,7 @@
 package ctfsendai2018
 
+import jwt "github.com/dgrijalva/jwt-go"
+
 // Authentication is structure that represents authentication information
 type Authentication struct {
 	Token string
@@ -18,5 +20,15 @@ func NewAuthRepository() AuthRepository {
 type authRepository struct{}
 
 func (r *authRepository) Login(u *User) (*Authentication, error) {
-	return &Authentication{Token: "eyJuYW1lIjogImhvZ2UgaG9nZSIsImV4cCI6IDE5MjQ5NTIzOTl9"}, nil
+	token := jwt.New(jwt.GetSigningMethod("none"))
+	token.Claims = jwt.MapClaims{
+		"user": u.Name,
+		"auth": u.Auth,
+		"exp":  1924952399,
+	}
+	tokenString, err := token.SignedString(jwt.UnsafeAllowNoneSignatureType)
+	if err != nil {
+		return nil, err
+	}
+	return &Authentication{Token: tokenString}, nil
 }
