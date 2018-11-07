@@ -86,7 +86,6 @@ func TestNewUser(t *testing.T) {
 			}
 			if reflect.DeepEqual(sut, arg.want) == false {
 				t.Errorf("Not equals actual: %v, expected: %v", sut, arg.want)
-				return
 			}
 		})
 	}
