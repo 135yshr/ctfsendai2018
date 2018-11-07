@@ -44,7 +44,7 @@ func TestLogin(t *testing.T) {
 					Password: "pass",
 				},
 			},
-			want: &Authentication{Token: "eyJleHAiOjE0OTQ1MTQyNjksInVzZXIiOiLnrqHnkIbogIUifQo="},
+			want: &Authentication{Token: "eyJuYW1lIjogImhvZ2UgaG9nZSIsImV4cCI6IDE5MjQ5NTIzOTl9"},
 		},
 	}
 	for testName, arg := range tests {

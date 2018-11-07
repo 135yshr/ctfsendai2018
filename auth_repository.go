@@ -18,5 +18,5 @@ func NewAuthRepository() AuthRepository {
 type authRepository struct{}
 
 func (r *authRepository) Login(u *User) (*Authentication, error) {
-	return &Authentication{Token: "eyJleHAiOjE0OTQ1MTQyNjksInVzZXIiOiLnrqHnkIbogIUifQo="}, nil
+	return &Authentication{Token: "eyJuYW1lIjogImhvZ2UgaG9nZSIsImV4cCI6IDE5MjQ5NTIzOTl9"}, nil
 }
