@@ -20,12 +20,13 @@ type User struct {
 	EMail    string
 	Note     string
 	Password string
+	Auth     uint8
 }
 
 // NewUser は、新しくユーザー情報のインスタンスを作成する
-func NewUser(name string, age uint8, email, note, passwd string) (*User, error) {
+func NewUser(name string, age uint8, email, note, passwd string, auth uint8) (*User, error) {
 	if name == "" {
 		return nil, fmt.Errorf("name can not be empty")
 	}
-	return &User{Name: name, Age: age, EMail: email, Note: note, Password: passwd}, nil
+	return &User{Name: name, Age: age, EMail: email, Note: note, Password: passwd, Auth: auth}, nil
 }
