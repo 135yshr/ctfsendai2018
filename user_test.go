@@ -12,6 +12,7 @@ func TestNewUser(t *testing.T) {
 		age   uint8
 		email string
 		note  string
+		pass  string
 	}
 	tests := map[string]struct {
 		args args
@@ -59,10 +60,14 @@ func TestNewUser(t *testing.T) {
 			args: args{name: "foo bar", note: "yyyyyy"},
 			want: &User{Name: "foo bar", Note: "yyyyyy"},
 		},
+		"パスワードにpasswordを指定してPasswordからpasswordが取得できること": {
+			args: args{name: "foo bar", pass: "password"},
+			want: &User{Name: "foo bar", Password: "password"},
+		},
 	}
 	for testName, arg := range tests {
 		t.Run(testName, func(t *testing.T) {
-			sut, err := NewUser(arg.args.name, arg.args.age, arg.args.email, arg.args.note)
+			sut, err := NewUser(arg.args.name, arg.args.age, arg.args.email, arg.args.note, arg.args.pass)
 			if reflect.DeepEqual(err, arg.err) == false {
 				t.Errorf("Error actual: %v, expected: %v", err, arg.err)
 			}
