@@ -1,6 +1,7 @@
 package ctfsendai2018
 
 import (
+	"errors"
 	"reflect"
 	"testing"
 )
@@ -59,12 +60,16 @@ func TestLogin(t *testing.T) {
 			},
 			want: &Authentication{Token: "eyJhbGciOiJub25lIiwidHlwIjoiSldUIn0.eyJhdXRoIjoyLCJleHAiOjE5MjQ5NTIzOTksInVzZXIiOiJmdWdhIGZ1Z2EifQ."},
 		},
+		"指定したユーザー情報がnilのときにエラーが発生すること": {
+			args: args{},
+			err:  errors.New("User information is empty"),
+		},
 	}
 	for testName, arg := range tests {
 		t.Run(testName, func(t *testing.T) {
 			sut := NewAuthRepository()
 			auth, err := sut.Login(arg.args.user)
-			if err != arg.err {
+			if reflect.DeepEqual(err, arg.err) == false {
 				t.Errorf("Error actual: %v, expected: %v", err, arg.err)
 			}
 			if reflect.DeepEqual(auth, arg.want) == false {

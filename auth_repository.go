@@ -1,6 +1,10 @@
 package ctfsendai2018
 
-import jwt "github.com/dgrijalva/jwt-go"
+import (
+	"errors"
+
+	jwt "github.com/dgrijalva/jwt-go"
+)
 
 // Authentication is structure that represents authentication information
 type Authentication struct {
@@ -20,6 +24,9 @@ func NewAuthRepository() AuthRepository {
 type authRepository struct{}
 
 func (r *authRepository) Login(u *User) (*Authentication, error) {
+	if u == nil {
+		return nil, errors.New("User information is empty")
+	}
 	token := jwt.New(jwt.GetSigningMethod("none"))
 	token.Claims = jwt.MapClaims{
 		"user": u.Name,
