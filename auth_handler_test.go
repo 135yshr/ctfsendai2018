@@ -5,7 +5,7 @@ import (
 	"testing"
 )
 
-func TestNewHander(t *testing.T) {
+func TestNewAuthHander(t *testing.T) {
 	type args struct {
 		uc AuthUsecase
 	}
