@@ -1,11 +1,12 @@
 package ctfsendai2018
 
 import (
+	"errors"
 	"reflect"
 	"testing"
 )
 
-func TestNewUser2(t *testing.T) {
+func TestNewUser(t *testing.T) {
 	type args struct {
 		email string
 		pass  string
@@ -32,6 +33,10 @@ func TestNewUser2(t *testing.T) {
 				Password: "pass",
 				Auth:     2,
 			},
+		},
+		"メールアドレスがからのときにインスタンスがnilになりエラーが返ってくること": {
+			args: args{"", "pass"},
+			err:  errors.New("E-mail address is empty"),
 		},
 	}
 	for testName, arg := range tests {

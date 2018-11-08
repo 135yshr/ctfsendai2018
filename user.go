@@ -4,6 +4,7 @@ package ctfsendai2018
 
 import (
 	"encoding/base64"
+	"errors"
 	"strings"
 )
 
@@ -27,6 +28,10 @@ type User struct {
 
 // NewUser は、新しくユーザー情報のインスタンスを作成する
 func NewUser(email, passwd string) (*User, error) {
+	if email == "" {
+		return nil, errors.New("E-mail address is empty")
+	}
+
 	id := base64.StdEncoding.EncodeToString([]byte(email))
 	return &User{ID: strings.TrimRight(id, "="), EMail: email, Password: passwd, Auth: 2}, nil
 }
