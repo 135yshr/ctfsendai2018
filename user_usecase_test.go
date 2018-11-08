@@ -6,22 +6,22 @@ import (
 	"testing"
 )
 
-func TestNewUserService(t *testing.T) {
+func TestNewUserUsecase(t *testing.T) {
 	rep := NewUserRepository()
 	type args struct {
 	}
 	tests := map[string]struct {
 		args args
-		want UserService
+		want UserUsecase
 		err  error
 	}{
-		"UserServiceのインスタンスが作成できること": {
-			want: &userService{rep},
+		"UserUsecaseのインスタンスが作成できること": {
+			want: &userUsecase{rep},
 		},
 	}
 	for testName, arg := range tests {
 		t.Run(testName, func(t *testing.T) {
-			sut := NewUserService(NewUserRepository())
+			sut := NewUserUsecase(NewUserRepository())
 			if reflect.DeepEqual(sut, arg.want) == false {
 				t.Errorf("Not equals actual: %v, expected: %v", sut, arg.want)
 			}
@@ -29,7 +29,7 @@ func TestNewUserService(t *testing.T) {
 	}
 }
 
-func TestUserService_Add(t *testing.T) {
+func TestUserUsecase_Add(t *testing.T) {
 	type args struct {
 		auth uint8
 		user *User
@@ -77,7 +77,7 @@ func TestUserService_Add(t *testing.T) {
 	}
 	for testName, arg := range tests {
 		t.Run(testName, func(t *testing.T) {
-			sut := NewUserService(NewUserRepository())
+			sut := NewUserUsecase(NewUserRepository())
 			err := sut.Add(arg.args.auth, arg.args.user)
 			if reflect.DeepEqual(err, arg.err) == false {
 				t.Errorf("Error actual: %v, expected: %v", err, arg.err)
