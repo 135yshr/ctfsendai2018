@@ -66,3 +66,33 @@ func TestAuthUsecase_Register(t *testing.T) {
 		})
 	}
 }
+
+func TestAuthUsecase_Login(t *testing.T) {
+	type args struct {
+		email    string
+		password string
+	}
+	tests := map[string]struct {
+		args args
+		want *Authentication
+		err  error
+	}{
+		"メールアドレスhoge@hoge.comでログインできトークンを取得できること": {
+			args: args{"hoge@hoge.com", "pass"},
+			want: &Authentication{Token: "eyJhbGciOiJub25lIiwidHlwIjoiSldUIn0.eyJhdXRoIjoyLCJleHAiOjE5MjQ5NTIzOTksInVzZXIiOiJob2dlIGhvZ2UifQ."},
+		},
+	}
+	userRep := NewUserRepository()
+	sut := NewAuthUsecase(NewAuthRepository(), userRep)
+	for testName, arg := range tests {
+		t.Run(testName, func(t *testing.T) {
+			token, err := sut.Login(arg.args.email, arg.args.password)
+			if reflect.DeepEqual(err, arg.err) == false {
+				t.Errorf("Error actual: %v, expected: %v", err, arg.err)
+			}
+			if reflect.DeepEqual(token, arg.want) {
+				t.Errorf("Not equals actual: %v, expected: %v", token, arg.want)
+			}
+		})
+	}
+}

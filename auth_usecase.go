@@ -3,6 +3,7 @@ package ctfsendai2018
 // AuthUsecase is service manipulating authentication information
 type AuthUsecase interface {
 	Register(string, string) error
+	Login(string, string) (*Authentication, error)
 }
 
 // NewAuthUsecase is create new instance
@@ -15,10 +16,18 @@ type authUsecase struct {
 	userRep UserRepository
 }
 
-func (s *authUsecase) Register(email, passwd string) error {
-	u, err := NewUser(email, passwd)
+func (u *authUsecase) Register(email, passwd string) error {
+	user, err := NewUser(email, passwd)
 	if err != nil {
 		return err
 	}
-	return s.userRep.Add(u)
+	return u.userRep.Add(user)
+}
+
+func (u *authUsecase) Login(email, passwd string) (*Authentication, error) {
+	user, err := NewUser(email, passwd)
+	if err != nil {
+		return nil, err
+	}
+	return u.authRep.Login(user)
 }
