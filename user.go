@@ -28,5 +28,5 @@ type User struct {
 // NewUser は、新しくユーザー情報のインスタンスを作成する
 func NewUser(email, passwd string) (*User, error) {
 	id := base64.StdEncoding.EncodeToString([]byte(email))
-	return &User{ID: strings.TrimRight(id, "="), EMail: email, Password: passwd}, nil
+	return &User{ID: strings.TrimRight(id, "="), EMail: email, Password: passwd, Auth: 2}, nil
 }

@@ -21,6 +21,7 @@ func TestNewUser2(t *testing.T) {
 				ID:       "aG9nZUBob2dlLmNvbQ",
 				EMail:    "hoge@hoge.com",
 				Password: "pass",
+				Auth:     2,
 			},
 		},
 		"メールアドレスにfuga@fuga.comとパスワードにpassを指定してインスタンスが作成されること": {
@@ -29,6 +30,7 @@ func TestNewUser2(t *testing.T) {
 				ID:       "ZnVnYUBmdWdhLmNvbQ",
 				EMail:    "fuga@fuga.com",
 				Password: "pass",
+				Auth:     2,
 			},
 		},
 	}
