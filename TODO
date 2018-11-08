@@ -22,8 +22,8 @@ Todo:
         ✔ パスワードにpasspassを指定してPasswordからpasspassが取得できること @done(18-11-07 14:32)
         ✔ 権限にAdmin(1)を指定してAuthorityからAdmin(1)が取得できること @done(18-11-07 14:35)
         ✔ 権限にWorker(2)を指定してAuthorityからWorker(2)が取得できること @done(18-11-07 14:36)
-        [] メールアドレスにhoge@hoge.comとパスワードにpassを指定してインスタンスが作成されること
-        [] メールアドレスにfuga@fuga.comとパスワードにpassを指定してインスタンスが作成されること
+        ✔ メールアドレスにhoge@hoge.comとパスワードにpassを指定してインスタンスが作成されること @done(18-11-08 11:55)
+        [] メールアドレスにfuga@fuga.comとパスワードにpassを指定してインスタンスが作成されること @started(18-11-08 11:56)
     UserRepositories:
         ✔ UserRepositoryのインスタンスが作成できること @done(18-11-07 14:56)
         ✔ アカウント登録を１回実行してユーザー情報を１件取得できること @done(18-11-07 15:09)

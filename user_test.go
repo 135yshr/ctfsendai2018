@@ -23,6 +23,14 @@ func TestNewUser2(t *testing.T) {
 				Password: "pass",
 			},
 		},
+		"メールアドレスにfuga@fuga.comとパスワードにpassを指定してインスタンスが作成されること": {
+			args: args{"fuga@fuga.com", "pass"},
+			want: &User{
+				ID:       "ZnVnYUBmdWdhLmNvbQ",
+				EMail:    "fuga@fuga.com",
+				Password: "pass",
+			},
+		},
 	}
 	for testName, arg := range tests {
 		t.Run(testName, func(t *testing.T) {
