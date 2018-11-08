@@ -31,8 +31,8 @@ Todo:
         ✔ UserRepositoryのインスタンスが作成できること @done(18-11-07 14:56)
         ✔ アカウント登録を１回実行してユーザー情報を１件取得できること @done(18-11-07 15:09)
         ✔ アカウント登録を２回実行してユーザー情報を２件取得できること @done(18-11-07 15:21)
-        [] メールアドレスがhoge@hoge.comのユーザー情報を登録しhoge@hoge.comを指定してユーザー情報を取得できること
-        [] メールアドレスがfuga@fuga.comのユーザー情報を登録しfuga@fuga.comを指定してユーザー情報を取得できること
+        ✔ メールアドレスがhoge@hoge.comのユーザー情報を登録しhoge@hoge.comを指定してユーザー情報を取得できること @started(18-11-08 18:32) @done(18-11-08 18:45) @lasted(13m35s)
+        ✔ メールアドレスがfuga@fuga.comのユーザー情報を登録しfuga@fuga.comを指定してユーザー情報を取得できること @done(18-11-08 18:46)
         [] メールアドレスがhoge@hoge.com2のユーザー情報を登録しhoge@hoge.comを指定してユーザー情報を取得できないこと
     AuthRepositories:
         ✔ AuthRepositoriesのインスタンスが作成できること @done(18-11-07 15:59)

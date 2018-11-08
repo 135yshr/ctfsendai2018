@@ -1,9 +1,14 @@
 package ctfsendai2018
 
+import (
+	"fmt"
+)
+
 // UserRepository is repository manipulating user information
 type UserRepository interface {
 	Add(*User) error
 	List() ([]*User, error)
+	FetchByEMail(string) (*User, error)
 }
 
 // NewUserRepository is Create new instance
@@ -22,4 +27,13 @@ func (r *userRepository) Add(u *User) error {
 
 func (r *userRepository) List() ([]*User, error) {
 	return r.list, nil
+}
+
+func (r *userRepository) FetchByEMail(email string) (*User, error) {
+	for _, u := range r.list {
+		if u.EMail == email {
+			return u, nil
+		}
+	}
+	return nil, fmt.Errorf("Not found %s", email)
 }
