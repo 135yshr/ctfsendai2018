@@ -1,6 +1,7 @@
 package ctfsendai2018
 
 import (
+	"errors"
 	"reflect"
 	"testing"
 )
@@ -101,6 +102,16 @@ func TestUserRepository_FetchByEMail(t *testing.T) {
 				},
 			},
 			want: &User{EMail: "fuga@fuga.com"},
+		},
+		"メールアドレスがhoge@hoge.comのユーザー情報を登録しhoge@hoge.com2を指定してユーザー情報を取得できないこと": {
+			args: args{
+				email: "hoge@hoge.com2",
+				users: []*User{
+					&User{EMail: "hoge@hoge.com"},
+					&User{EMail: "fuga@fuga.com"},
+				},
+			},
+			err: errors.New("Not found hoge@hoge.com2"),
 		},
 	}
 	for testName, arg := range tests {
