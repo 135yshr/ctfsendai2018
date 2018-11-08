@@ -1,6 +1,8 @@
 package ctfsendai2018
 
 import (
+	"net/http"
+
 	"github.com/gin-gonic/gin"
 )
 
@@ -19,9 +21,54 @@ type authHandler struct {
 	uc AuthUsecase
 }
 
-func (h *authHandler) Register(*gin.Context) {
+func (h *authHandler) Register(c *gin.Context) {
+	m := make(map[string]string)
+	if err := c.BindJSON(&m); err != nil {
+		c.JSON(http.StatusBadRequest, map[string]interface{}{
+			"status":  http.StatusBadRequest,
+			"message": err.Error(),
+			"error":   true,
+		})
+		return
+	}
+	if err := h.uc.Register(m["email"], m["password"]); err != nil {
+		c.JSON(http.StatusInternalServerError, map[string]interface{}{
+			"status":  http.StatusInternalServerError,
+			"message": err.Error(),
+			"error":   true,
+		})
+		return
+	}
+	c.JSON(http.StatusOK, map[string]interface{}{
+		"status":  http.StatusOK,
+		"message": "success",
+		"error":   false,
+	})
 }
 
-func (h *authHandler) Login(*gin.Context) {
-
+func (h *authHandler) Login(c *gin.Context) {
+	m := make(map[string]string)
+	if err := c.BindJSON(&m); err != nil {
+		c.JSON(http.StatusBadRequest, map[string]interface{}{
+			"status":  http.StatusBadRequest,
+			"message": err.Error(),
+			"error":   true,
+		})
+		return
+	}
+	auth, err := h.uc.Login(m["email"], m["password"])
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, map[string]interface{}{
+			"status":  http.StatusInternalServerError,
+			"message": err.Error(),
+			"error":   true,
+		})
+		return
+	}
+	c.JSON(http.StatusOK, map[string]interface{}{
+		"status":  http.StatusOK,
+		"message": "success",
+		"token":   auth.Token,
+		"error":   false,
+	})
 }

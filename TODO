@@ -53,8 +53,8 @@ Todo:
     Handlers:
         ✔ AuthHanlderのインスタンスが作成できること @done(18-11-09 09:13)
         ✔ UserHanlderのインスタンスが作成できること @done(18-11-09 09:18)
-        [] /api/v1/register にメールアドレスhoge@hoge.comとパスワードpassをPOSTして新しくユーザー情報を作成できること
-        [] /api/v1/login にメールアドレスhoge@hoge.comとパスワードpassをPOSTしてログインできること
+        ✔ /api/v1/register にメールアドレスhoge@hoge.comとパスワードpassをPOSTして新しくユーザー情報を作成できること @done(18-11-09 09:53)
+        ✔ /api/v1/login にメールアドレスhoge@hoge.comとパスワードpassをPOSTしてログインできること @done(18-11-09 09:53)
         [] /api/v1/users をGETして空のユーザー情報リストが取得できること
         [] /api/v1/users にユーザー情報をPOSTして登録したユーザー情報と同じ値が返ってくること
         [] /api/v1/users をGETして１件ユーザー情報リストが取得できること
