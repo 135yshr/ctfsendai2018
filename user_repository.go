@@ -2,6 +2,7 @@ package ctfsendai2018
 
 import (
 	"fmt"
+	"sort"
 )
 
 // UserRepository is repository manipulating user information
@@ -13,27 +14,37 @@ type UserRepository interface {
 
 // NewUserRepository is Create new instance
 func NewUserRepository() UserRepository {
-	return &userRepository{}
+	return &userRepository{m: make(map[string]*User)}
 }
 
 type userRepository struct {
-	list []*User
+	m map[string]*User
 }
 
 func (r *userRepository) Add(u *User) error {
-	r.list = append(r.list, u)
+	fmt.Println("Add", u.EMail)
+	r.m[u.EMail] = u
 	return nil
 }
 
 func (r *userRepository) List() ([]*User, error) {
-	return r.list, nil
+	l := make([]string, len(r.m))
+	x := 0
+	for k := range r.m {
+		l[x] = k
+		x++
+	}
+	sort.Strings(l)
+	list := make([]*User, len(l))
+	for n, k := range l {
+		list[n] = r.m[k]
+	}
+	return list, nil
 }
 
 func (r *userRepository) FetchByEMail(email string) (*User, error) {
-	for _, u := range r.list {
-		if u.EMail == email {
-			return u, nil
-		}
+	if v, ok := r.m[email]; ok {
+		return v, nil
 	}
 	return nil, fmt.Errorf("Not found %s", email)
 }

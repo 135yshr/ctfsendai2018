@@ -15,7 +15,7 @@ func TestCreateInstance(t *testing.T) {
 		err  error
 	}{
 		"UserRepositoryのインスタンスが作成できること": {
-			want: &userRepository{},
+			want: &userRepository{m: make(map[string]*User)},
 		},
 	}
 	for testName, arg := range tests {
@@ -38,21 +38,21 @@ func TestAddUser(t *testing.T) {
 		err  error
 	}{
 		"アカウント登録を１回実行してユーザー情報を１件取得できること": {
-			args: args{users: []*User{&User{}}},
+			args: args{users: []*User{&User{EMail: "hoge@hoge.com"}}},
 			want: []*User{
-				&User{},
+				&User{EMail: "hoge@hoge.com"},
 			},
 		},
 		"アカウント登録を２回実行してユーザー情報を２件取得できること": {
 			args: args{
 				users: []*User{
-					&User{Name: "hoge hoge"},
-					&User{Name: "huga huga"},
+					&User{EMail: "hoge@hoge.com", Name: "hoge hoge"},
+					&User{EMail: "huga@huga.com", Name: "huga huga"},
 				},
 			},
 			want: []*User{
-				&User{Name: "hoge hoge"},
-				&User{Name: "huga huga"},
+				&User{EMail: "hoge@hoge.com", Name: "hoge hoge"},
+				&User{EMail: "huga@huga.com", Name: "huga huga"},
 			},
 		},
 	}
