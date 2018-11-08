@@ -49,7 +49,7 @@ Todo:
         ✔ AuthUsecaseのインスタンスが作成できること @done(18-11-08 17:55)
         ✔ メールアドレスhoge@hoge.comで新しくアカウントが登録できること @started(18-11-08 17:55) @done(18-11-08 18:15) @lasted(20m19s)
         ✔ メールアドレスhoge@hoge.comでログインできトークンを取得できること @done(18-11-08 18:27)
-        [] メールアドレスfuga@fuga.comでログインできないこと
+        ✔ メールアドレスfuga@fuga.comでログインできないこと @done(18-11-09 08:34)
     Handlers:
         [] /api/v1/register にメールアドレスhoge@hoge.comとパスワードpassをPOSTして新しくユーザー情報を作成できること
         [] /api/v1/login にメールアドレスhoge@hoge.comとパスワードpassをPOSTしてログインできること

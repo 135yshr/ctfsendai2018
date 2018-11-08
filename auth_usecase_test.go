@@ -1,6 +1,7 @@
 package ctfsendai2018
 
 import (
+	"errors"
 	"reflect"
 	"testing"
 )
@@ -81,8 +82,14 @@ func TestAuthUsecase_Login(t *testing.T) {
 			args: args{"hoge@hoge.com", "pass"},
 			want: &Authentication{Token: "eyJhbGciOiJub25lIiwidHlwIjoiSldUIn0.eyJhdXRoIjoyLCJleHAiOjE5MjQ5NTIzOTksInVzZXIiOiJob2dlIGhvZ2UifQ."},
 		},
+		"メールアドレスfuga@fuga.comでログインできないこと": {
+			args: args{"fuga@fuga.com", "pass"},
+			err:  errors.New("Failed login"),
+		},
 	}
+	u, _ := NewUser("hoge@hoge.com", "pass")
 	userRep := NewUserRepository()
+	userRep.Add(u)
 	sut := NewAuthUsecase(NewAuthRepository(), userRep)
 	for testName, arg := range tests {
 		t.Run(testName, func(t *testing.T) {
@@ -90,7 +97,7 @@ func TestAuthUsecase_Login(t *testing.T) {
 			if reflect.DeepEqual(err, arg.err) == false {
 				t.Errorf("Error actual: %v, expected: %v", err, arg.err)
 			}
-			if reflect.DeepEqual(token, arg.want) {
+			if token != arg.want && reflect.DeepEqual(token, arg.want) {
 				t.Errorf("Not equals actual: %v, expected: %v", token, arg.want)
 			}
 		})

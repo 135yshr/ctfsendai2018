@@ -22,7 +22,6 @@ type userRepository struct {
 }
 
 func (r *userRepository) Add(u *User) error {
-	fmt.Println("Add", u.EMail)
 	r.m[u.EMail] = u
 	return nil
 }

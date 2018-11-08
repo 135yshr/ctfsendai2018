@@ -1,5 +1,10 @@
 package ctfsendai2018
 
+import (
+	"errors"
+	"strings"
+)
+
 // AuthUsecase is service manipulating authentication information
 type AuthUsecase interface {
 	Register(string, string) error
@@ -25,8 +30,12 @@ func (u *authUsecase) Register(email, passwd string) error {
 }
 
 func (u *authUsecase) Login(email, passwd string) (*Authentication, error) {
-	user, err := NewUser(email, passwd)
+	user, err := u.userRep.FetchByEMail(email)
+	// user, err := NewUser(email, passwd)
 	if err != nil {
+		if strings.Index(err.Error(), "Not found") != -1 {
+			return nil, errors.New("Failed login")
+		}
 		return nil, err
 	}
 	return u.authRep.Login(user)
