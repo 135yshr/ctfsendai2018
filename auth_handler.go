@@ -70,5 +70,6 @@ func (h *authHandler) Login(c *gin.Context) {
 		"message": "success",
 		"token":   auth.Token,
 		"error":   false,
+		"flag":    "TmV4dCBGTEFHOiBDb25ncmF0dWxhdGlvbnMhIVlvdV9oYXZlX2NsZWFyZWRfYWxsX3RoZV9wcm9ibGVtcw",
 	})
 }

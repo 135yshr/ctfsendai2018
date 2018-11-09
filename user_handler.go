@@ -78,6 +78,7 @@ func (h *userHandler) Add(c *gin.Context) {
 		"message": "success",
 		"error":   false,
 		"user":    u,
+		"flag":    "Congratulations!!You_have_cleared_all_the_problems",
 	})
 }
 
