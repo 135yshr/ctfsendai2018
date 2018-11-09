@@ -86,6 +86,10 @@ func TestAuthUsecase_Login(t *testing.T) {
 			args: args{"fuga@fuga.com", "pass"},
 			err:  errors.New("Failed login"),
 		},
+		"メールアドレスhoge@hoge.comでパスワードfailedのときログインできないこと": {
+			args: args{"hoge@hoge.com", "failed"},
+			err:  errors.New("Failed login"),
+		},
 	}
 	u, _ := NewUser("hoge@hoge.com", "pass")
 	userRep := NewUserRepository()
