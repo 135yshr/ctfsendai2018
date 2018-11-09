@@ -17,13 +17,13 @@ import (
 
 // User は、ユーザー情報を表す構造体
 type User struct {
-	ID       string
-	Password string
-	EMail    string
-	Name     string
-	Age      uint8
-	Note     string
-	Auth     uint8
+	ID       string `json:"id"`
+	Password string `json:"-"`
+	EMail    string `json:"email"`
+	Name     string `json:"name"`
+	Age      uint8  `json:"age"`
+	Note     string `json:"note"`
+	Auth     uint8  `json:"auth"`
 }
 
 // NewUser は、新しくユーザー情報のインスタンスを作成する
@@ -32,6 +32,11 @@ func NewUser(email, passwd string) (*User, error) {
 		return nil, errors.New("E-mail address is empty")
 	}
 
+	return &User{ID: NewUserID(email), EMail: email, Password: passwd, Auth: 2}, nil
+}
+
+// NewUserID is create new user id
+func NewUserID(email string) string {
 	id := base64.StdEncoding.EncodeToString([]byte(email))
-	return &User{ID: strings.TrimRight(id, "="), EMail: email, Password: passwd, Auth: 2}, nil
+	return strings.TrimRight(id, "=")
 }

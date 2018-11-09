@@ -21,6 +21,9 @@ func (s *userUsecase) Add(auth uint8, u *User) error {
 	if auth != 1 {
 		return errors.New("Don't have permission")
 	}
+	if u.ID == "" {
+		u.ID = NewUserID(u.EMail)
+	}
 	return s.rep.Add(u)
 }
 

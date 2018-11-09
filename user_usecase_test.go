@@ -52,6 +52,7 @@ func TestUserUsecase_Add(t *testing.T) {
 			},
 			want: []*User{
 				&User{
+					ID:       "aG9nZUBob2dlLmNvbQ",
 					Name:     "hoge hoge",
 					Age:      18,
 					EMail:    "hoge@hoge.com",
@@ -83,8 +84,13 @@ func TestUserUsecase_Add(t *testing.T) {
 				t.Errorf("Error actual: %v, expected: %v", err, arg.err)
 			}
 			list, _ := sut.List(arg.args.auth)
-			if len(list) != len(arg.want) && reflect.DeepEqual(list, arg.want) == false {
-				t.Errorf("Not equals actual: %v, expected: %v", list, arg.want)
+			if len(list) != len(arg.want) {
+				t.Errorf("Not equals count actual: %d, expected: %d", len(list), len(arg.want))
+			}
+			for i := 0; i < len(list); i++ {
+				if reflect.DeepEqual(list[i], arg.want[i]) == false {
+					t.Errorf("Not equals actual: %v, expected: %v", list[i], arg.want[i])
+				}
 			}
 		})
 	}
