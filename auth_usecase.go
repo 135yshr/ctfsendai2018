@@ -2,6 +2,7 @@ package ctfsendai2018
 
 import (
 	"errors"
+	"fmt"
 )
 
 // AuthUsecase is service manipulating authentication information
@@ -34,7 +35,8 @@ func (u *authUsecase) Login(email, passwd string) (*Authentication, error) {
 		return nil, errors.New("Failed login")
 	}
 	if user.Password != passwd {
-		return nil, errors.New("Failed login")
+		fmt.Println(user.Password, passwd)
+		return nil, errors.New("Do not mutch user or password")
 	}
 	return u.authRep.Login(user)
 }
