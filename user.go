@@ -3,7 +3,9 @@
 package ctfsendai2018
 
 import (
-	"fmt"
+	"encoding/base64"
+	"errors"
+	"strings"
 )
 
 // Specification of user information
@@ -15,18 +17,26 @@ import (
 
 // User は、ユーザー情報を表す構造体
 type User struct {
-	Name     string
-	Age      uint8
-	EMail    string
-	Note     string
-	Password string
-	Auth     uint8
+	ID       string `json:"id"`
+	Password string `json:"-"`
+	EMail    string `json:"email"`
+	Name     string `json:"name"`
+	Age      uint8  `json:"age"`
+	Note     string `json:"note"`
+	Auth     uint8  `json:"auth"`
 }
 
 // NewUser は、新しくユーザー情報のインスタンスを作成する
-func NewUser(name string, age uint8, email, note, passwd string, auth uint8) (*User, error) {
-	if name == "" {
-		return nil, fmt.Errorf("name can not be empty")
+func NewUser(email, passwd string) (*User, error) {
+	if email == "" {
+		return nil, errors.New("E-mail address is empty")
 	}
-	return &User{Name: name, Age: age, EMail: email, Note: note, Password: passwd, Auth: auth}, nil
+
+	return &User{ID: NewUserID(email), EMail: email, Password: passwd, Auth: 2}, nil
+}
+
+// NewUserID is create new user id
+func NewUserID(email string) string {
+	id := base64.StdEncoding.EncodeToString([]byte(email))
+	return strings.TrimRight(id, "=")
 }

@@ -2,28 +2,31 @@ package ctfsendai2018
 
 import "errors"
 
-// UserService is service manipulating user information
-type UserService interface {
+// UserUsecase is service manipulating user information
+type UserUsecase interface {
 	Add(uint8, *User) error
 	List(uint8) ([]*User, error)
 }
 
-// NewUserService is create new instance
-func NewUserService(rep UserRepository) UserService {
-	return &userService{rep}
+// NewUserUsecase is create new instance
+func NewUserUsecase(rep UserRepository) UserUsecase {
+	return &userUsecase{rep}
 }
 
-type userService struct {
+type userUsecase struct {
 	rep UserRepository
 }
 
-func (s *userService) Add(auth uint8, u *User) error {
+func (s *userUsecase) Add(auth uint8, u *User) error {
 	if auth != 1 {
 		return errors.New("Don't have permission")
+	}
+	if u.ID == "" {
+		u.ID = NewUserID(u.EMail)
 	}
 	return s.rep.Add(u)
 }
 
-func (s *userService) List(auth uint8) ([]*User, error) {
+func (s *userUsecase) List(auth uint8) ([]*User, error) {
 	return s.rep.List()
 }

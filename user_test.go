@@ -8,6 +8,52 @@ import (
 
 func TestNewUser(t *testing.T) {
 	type args struct {
+		email string
+		pass  string
+	}
+	tests := map[string]struct {
+		args args
+		want *User
+		err  error
+	}{
+		"メールアドレスにhoge@hoge.comとパスワードにpassを指定してインスタンスが作成されること": {
+			args: args{"hoge@hoge.com", "pass"},
+			want: &User{
+				ID:       "aG9nZUBob2dlLmNvbQ",
+				EMail:    "hoge@hoge.com",
+				Password: "pass",
+				Auth:     2,
+			},
+		},
+		"メールアドレスにfuga@fuga.comとパスワードにpassを指定してインスタンスが作成されること": {
+			args: args{"fuga@fuga.com", "pass"},
+			want: &User{
+				ID:       "ZnVnYUBmdWdhLmNvbQ",
+				EMail:    "fuga@fuga.com",
+				Password: "pass",
+				Auth:     2,
+			},
+		},
+		"メールアドレスがからのときにインスタンスがnilになりエラーが返ってくること": {
+			args: args{"", "pass"},
+			err:  errors.New("E-mail address is empty"),
+		},
+	}
+	for testName, arg := range tests {
+		t.Run(testName, func(t *testing.T) {
+			sut, err := NewUser(arg.args.email, arg.args.pass)
+			if reflect.DeepEqual(err, arg.err) == false {
+				t.Errorf("Error actual: %v, expected: %v", err, arg.err)
+			}
+			if reflect.DeepEqual(sut, arg.want) == false {
+				t.Errorf("Not equals actual: %v, expected: %v", sut, arg.want)
+			}
+		})
+	}
+}
+
+func TestUser_change(t *testing.T) {
+	type args struct {
 		name  string
 		age   uint8
 		email string
@@ -25,9 +71,6 @@ func TestNewUser(t *testing.T) {
 				name: "hoge fuga",
 			},
 			want: &User{Name: "hoge fuga"},
-		},
-		"氏名が空のときにインスタンスがnilになり、エラーが返ってくること": {
-			err: errors.New("name can not be empty"),
 		},
 		"氏名にhoge fugaを指定してNameからhoge fugaが取得できること": {
 			args: args{name: "hoge fuga"},
@@ -80,9 +123,13 @@ func TestNewUser(t *testing.T) {
 	}
 	for testName, arg := range tests {
 		t.Run(testName, func(t *testing.T) {
-			sut, err := NewUser(arg.args.name, arg.args.age, arg.args.email, arg.args.note, arg.args.pass, arg.args.auth)
-			if reflect.DeepEqual(err, arg.err) == false {
-				t.Errorf("Error actual: %v, expected: %v", err, arg.err)
+			sut := &User{
+				Name:     arg.args.name,
+				Password: arg.args.pass,
+				EMail:    arg.args.email,
+				Auth:     arg.args.auth,
+				Age:      arg.args.age,
+				Note:     arg.args.note,
 			}
 			if reflect.DeepEqual(sut, arg.want) == false {
 				t.Errorf("Not equals actual: %v, expected: %v", sut, arg.want)
